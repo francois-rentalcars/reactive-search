@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Reactive search</title>
+</head>
+<body>
+    <h2>Search results</h2>
+
+    <script>
+        var source = new EventSource('/search');
+
+        source.addEventListener('message', function(e) {
+            document.body.innerHTML += '<div>' + e.data + '</div>';
+        }, false);
+
+        setTimeout(function() {
+            source.close();
+        }, 7000);
+    </script>
+</body>
+</html>
